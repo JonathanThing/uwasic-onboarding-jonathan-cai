@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Jonathan Cai
+ * Copyright (c) 2025 Jonathan Cai
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -17,7 +17,7 @@ module tt_um_uwasic_onboarding_jonathan_cai (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uo_out  = 0; 
   assign uio_out = 0;
   assign uio_oe  = 8'hFF; // Set all IOs to output
 
@@ -37,6 +37,19 @@ module tt_um_uwasic_onboarding_jonathan_cai (
     .en_reg_pwm_15_8(en_reg_pwm_15_8),
     .pwm_duty_cycle(pwm_duty_cycle),
     .out({uio_out, uo_out})
+  );
+
+  spi_peripheral spi_peripheral_inst (
+    .clk(clk),
+    .SCLK(SCLK),
+    .nCS(nCS),
+    .COPI(COPI),
+    .rst_n(rst_n),
+    .en_reg_out_7_0(en_reg_out_7_0),
+    .en_reg_out_15_8(en_reg_out_15_8),
+    .en_reg_pwm_7_0(en_reg_pwm_7_0),
+    .en_reg_pwm_15_8(en_reg_pwm_15_8),
+    .pwm_duty_cycle(pwm_duty_cycle)
   );
 
 
